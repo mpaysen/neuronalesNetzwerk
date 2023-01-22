@@ -1,6 +1,6 @@
 public class numja {
 
-  public  static double[][] random(double[][] m) {
+  public static double[][] random(double[][] m) {
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {
         m[i][f] = Math.random();
@@ -9,7 +9,7 @@ public class numja {
     return m;
   }
 
-  public  static double[][] random(int r, int c) {
+  public static double[][] random(int r, int c) {
     double[][] m = new double[r][c];
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {

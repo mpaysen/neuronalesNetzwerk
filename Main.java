@@ -11,23 +11,23 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws Exception {
         neuralNetwork n = new neuralNetwork(784,100,10,0.3);
-        //trainloop(n, 10, "mnist_train.csv");
+        //trainloop(n, 10, "mnist_train.csv", 255);
         //save("test_wih.txt", n.getwih());
         //save("test_who.txt", n.getwho());
         loadwho(n, "test_who.txt");
         loadwih(n, "test_wih.txt");
-        System.out.println(query(n, 89, "mnist_test.csv"));
+        System.out.println(query(n, 1, "mnist_test.csv", 255));
         
 
    }
 
-   public static String query(neuralNetwork n, int index, String path) throws Exception {
+   public static String query(neuralNetwork n, int index, String path, int scale) throws Exception {
         List<List<Double>> data_list = new ArrayList<List<Double>>();
         data_list = readData(path);
         List<Double> all_values = new ArrayList<>();
         all_values = data_list.get(index);
         List<Double> inputs = new ArrayList<>();
-        inputs = scale(all_values);
+        inputs = scale(all_values, scale);
         List<List<Double>> I = new ArrayList<List<Double>>();
         I.add(inputs);
         double[][] result = n.query(I);
@@ -64,7 +64,7 @@ public class Main {
       }
    }
 
-   public static void trainloop(neuralNetwork n, int outputnodes, String path) throws Exception {
+   public static void trainloop(neuralNetwork n, int outputnodes, String path, int scale) throws Exception {
     List<List<Double>> data_list = new ArrayList<List<Double>>();
     data_list = readData(path);
 
@@ -73,7 +73,7 @@ public class Main {
         all_values = data_list.get(i);
 
         List<Double> inputs = new ArrayList<>();
-        inputs = scale(all_values);
+        inputs = scale(all_values, scale);
 
         List<Double> targets = new ArrayList<>();
             for (int f = 0; f < outputnodes; ++f) {
@@ -91,11 +91,11 @@ public class Main {
     }
    }
 
-    public static List<Double> scale(List<Double> m) {
+    public static List<Double> scale(List<Double> m, int scale) {
         List<Double> scaled = new ArrayList<>();
         List<Double> input = m;
         for (int i = 0; i < input.size(); ++i) {
-            scaled.add(i, (input.get(i) / 255.0 * 0.99) + 0.01);
+            scaled.add(i, (input.get(i) / scale * 0.99) + 0.01);
         }
         return scaled.subList(1, scaled.size());
     }
