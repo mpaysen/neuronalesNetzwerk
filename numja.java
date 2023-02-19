@@ -1,5 +1,6 @@
 public class numja {
 
+  //fill two dimensional array "m" with random numbers
   public static double[][] random(double[][] m) {
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {
@@ -8,7 +9,7 @@ public class numja {
     }
     return m;
   }
-
+  //create an two dimensional array "m" with rows "r" and colums "c" filled with random numbers
   public static double[][] random(int r, int c) {
     double[][] m = new double[r][c];
     for(int i = 0; i < m.length; ++i){
@@ -18,7 +19,7 @@ public class numja {
     }
     return m;
   }
-
+ //add skalar "s" to  two dimensional array "m"
   public static double[][] add(double[][] m, double s) {
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {
@@ -27,7 +28,7 @@ public class numja {
     }
     return m;
   }
-
+//sub skalar "s" from two dimensional array "m"
   public static double[][] sub(double[][] m, double s) {
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {
@@ -36,7 +37,7 @@ public class numja {
     }
     return m;
   }
-
+//sub two dimensional array "m" from skalar "s"
   public static double[][] sub(double s, double[][] m) {
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {
@@ -45,7 +46,7 @@ public class numja {
     }
     return m;
   }
-
+//add every double from two dimensional array "s" to "m", arrays musst be identical
   public static double[][] add(double[][] m, double[][] s) {
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {
@@ -54,14 +55,14 @@ public class numja {
     }
     return m;
   }
-
+ //add skalar "s" to  two array "m"
   public static double[] add(double[] m,double s) {
     for(int i = 0; i < m.length; ++i){
         m[i] += s;
     }
     return m;
   }
-
+//sub every double from two dimensional array "s" from "m", arrays musst be identical
   public static double[][] sub(double[][] m, double[][] s) {
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {
@@ -71,8 +72,9 @@ public class numja {
     return m;
   }
 
+//matrix multiplication with two two dimensional arrays "m2" and "m1"
   public static double[][] dot( double[][] m2, double[][] m1) {
-    //Zeilenlänge (von m1) und Spaltenlänge (von m2) müssen identisch sein
+    ///line length (of m1) and column length (of m2) must be identical
     if (m1 == null | m2 == null | m1[0].length != m2.length) {
       throw new IllegalArgumentException();
     }
@@ -88,7 +90,7 @@ public class numja {
     }
     return m3;
   }
-
+//transpose matrix m1
   public static double[][] transpose(double[][] m1) {
     double[][] m = new double[m1[0].length][m1.length];
     for(int i = 0; i < m.length; ++i){
@@ -98,7 +100,7 @@ public class numja {
     }
     return m;
   }
-
+//skalar multiplication with "s" and two dimensional array "m"
   public static double[][] dot(double[][] m, double s) {
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {
@@ -107,7 +109,7 @@ public class numja {
     }
     return m;
   }
-
+//skalar multiplication with two dimensional array "s" and two dimensional array "m"
   public static double[][] dots(double[][] m, double[][] s) {
     for(int i = 0; i < m.length; ++i){
       for (int f = 0; f < m[i].length; ++f) {
@@ -121,6 +123,7 @@ private static double sigmoid(double t) {
     return 1 / (1 + Math.pow(Math.E, (-1 * t)));
 }
 
+//sigmoid functin on two dimensional array "x"
 public static double[][] sigmoid(double[][] x, boolean deriv) {
     double[][] result = new double[x.length][x[0].length];
 
